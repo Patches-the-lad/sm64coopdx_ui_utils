@@ -19,6 +19,7 @@ local ui_panel = require("ui_panel")
 local ui_textbox = require("ui_textbox")
 local ui_hstack = require("ui_hstack")
 local ui_vstack = require("ui_vstack")
+local ui_grid = require("ui_grid")
 
 local M = {}
 
@@ -29,6 +30,7 @@ function M.init()
 	ui_textbox.init(M)
 	ui_hstack.init(M)
 	ui_vstack.init(M)
+	ui_grid.init(M)
 end
 
 -- Factory helpers for creating UI objects with empty child lists.
@@ -38,6 +40,7 @@ function M.create_panel(arg_params) return setmetatable({ children = {}, arg_par
 function M.create_text_box(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_textbox.TextBox.defaults }, ui_textbox.TextBox) end
 function M.create_h_stack(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_hstack.HStack.defaults }, ui_hstack.HStack) end
 function M.create_v_stack(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_vstack.VStack.defaults }, ui_vstack.VStack) end
+function M.create_grid(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_grid.Grid.defaults }, ui_grid.Grid) end
 
 -- Export classes too, in case callers want direct access.
 M.Screen = ui_screen.Screen
@@ -46,6 +49,7 @@ M.Panel = ui_panel.Panel
 M.TextBox = ui_textbox.TextBox
 M.HStack = ui_hstack.HStack
 M.VStack = ui_vstack.VStack
+M.Grid = ui_grid.Grid
 
 return M
 

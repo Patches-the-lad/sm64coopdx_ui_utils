@@ -88,7 +88,7 @@ return M
 
 ```
 
-![image-20260728170929776](/home/patches/.config/Typora/typora-user-images/image-20260728170929776.png)
+![Alt text](demo_image.png)
 
 ------
 

@@ -19,7 +19,7 @@ M.Screen.defaults = {
 	min_w = 1, min_h = 1,
 	max_w = djui_hud_get_screen_width(),
 	max_h = djui_hud_get_screen_height(),
-	padding_x = 10, padding_y = 10,
+	padding_x = 0, padding_y = 0,
 	fill_mode = "fill",
 }
 
@@ -28,7 +28,7 @@ function M.Screen:get_min_size(defaults, arg_params)
 end
 
 function M.Screen:render(arg_params)
-	local params = ui_helpers.merge_params(self.defaults, arg_params)
+	local params = ui_helpers.merge_params(self.defaults, self.arg_params, arg_params)
 
 	-- Make sure the screen is at least as big as its children require.
 	local req_w, req_h = self:get_min_size(self.defaults, arg_params)

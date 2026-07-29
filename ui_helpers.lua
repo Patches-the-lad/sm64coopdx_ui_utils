@@ -80,11 +80,11 @@ end
 
 -- Text rendering helper
 -- Draw text with optional wrapping and line splitting.
-function M.render_text_lines(text, text_scale, font, word_wrap, char_wrap, w_align, h_align, line_spacing, pad_x, pad_y, max_w, max_h, x, y, main_color, shadow_color, shadow_offset_x, shadow_offset_y)
+function M.render_text_lines(text, text_scale, font, word_wrap, char_wrap, h_align, v_align, line_spacing, pad_x, pad_y, max_w, max_h, x, y, main_color, shadow_color, shadow_offset_x, shadow_offset_y)
 	if not text or text == "" then return end
 
 	djui_hud_set_font(font)
-	djui_hud_set_text_alignment(w_align, 0) -- Horizontal alignment works almost out of the box. Vertical alignment has to be manually done.
+	djui_hud_set_text_alignment(h_align, 0) -- Horizontal alignment works almost out of the box. Vertical alignment has to be manually done.
 
 	local available_w = max_w - (pad_x * 2)
 
@@ -156,13 +156,13 @@ function M.render_text_lines(text, text_scale, font, word_wrap, char_wrap, w_ali
 	local top_y = y + pad_y
 	local bottom_y = y + max_h - pad_y - total_block_height
 
-	-- h_align = 0 is top, 1 is bottom.
+	-- v_align = 0 is top, 1 is bottom.
 	-- This allows for smooth transitions and fixes the runtime update bug.
-	local current_y = top_y + (bottom_y - top_y) * h_align
+	local current_y = top_y + (bottom_y - top_y) * v_align
 
 
 	-- 4. Calculate Horizontal Position
-	local current_x = x + pad_x + (w_align * (max_w - 2 * pad_x))
+	local current_x = x + pad_x + (h_align * (max_w - 2 * pad_x))
 	local top_boundary = y + pad_y
 	local bottom_boundary = y + max_h - pad_y
 

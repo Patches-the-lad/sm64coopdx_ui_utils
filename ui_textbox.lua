@@ -30,11 +30,11 @@ M.TextBox.defaults = {
 
 	text = "default text",
 	text_scale = 1,
-	text_color = { r = 255, g = 255, b = 255, a = 255 },
+	text_color = {r = 255, g = 255, b = 255, a = 255},
 
 	-- Shadow Settings
 	use_shadow = true,
-	shadow_color = { r = 0, g = 0, b = 0, a = 150 },
+	shadow_color = {r = 0, g = 0, b = 0, a = 150},
 	shadow_offset_x = 2,
 	shadow_offset_y = 2,
 
@@ -44,8 +44,8 @@ M.TextBox.defaults = {
 	word_wrap = true,
 	char_wrap = true,
 	line_spacing = 1.0,
-	w_align = 0,
 	h_align = 0,
+	v_align = 0,
 }
 
 function M.TextBox:get_min_size(defaults, arg_params)
@@ -80,8 +80,8 @@ function M.TextBox:render(arg_params, parent_params)
 		params.font,
 		params.word_wrap,
 		params.char_wrap,
-		params.w_align,
 		params.h_align,
+		params.v_align,
 		params.line_spacing,
 		params.text_padding_x,
 		params.text_padding_y,

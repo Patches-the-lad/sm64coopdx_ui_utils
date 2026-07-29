@@ -37,7 +37,7 @@ end
 function M.create_screen(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_screen.Screen.defaults }, ui_screen.Screen) end
 function M.create_container(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_container.Container.defaults }, ui_container.Container) end
 function M.create_panel(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_panel.Panel.defaults }, ui_panel.Panel) end
-function M.create_text_box(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_textbox.TextBox.defaults }, ui_textbox.TextBox) end
+function M.create_textbox(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_textbox.TextBox.defaults }, ui_textbox.TextBox) end
 function M.create_h_stack(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_hstack.HStack.defaults }, ui_hstack.HStack) end
 function M.create_v_stack(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_vstack.VStack.defaults }, ui_vstack.VStack) end
 function M.create_grid(arg_params) return setmetatable({ children = {}, arg_params = arg_params or {}, defaults = ui_grid.Grid.defaults }, ui_grid.Grid) end

@@ -1,45 +1,57 @@
--- Using an object's arg_params, you can change how it behaves in real time.
--- Silly example that makes a textbox go all around the screen:
-
 -- Add the tool
 local ui_utils = require("ui_utils")
 
-local test_var_1 = 0
-local test_var_2 = 0
-
 -- The base UI object that acts as the entire screen
-local screen = ui_utils.create_screen()
-
--- The textbox, colored blue, with orange text
-local test_textbox = ui_utils.create_textbox({
-        panel_color = {r = 0, g = 127, b = 255, a = 160},
-        text_color = {r = 255, g = 128, b = 0, a = 255},
-        fill_mode = "no_fill",
-        min_w = 300, min_h = 200,
-        text = "Weeee!",
-        text_scale = 1,
-        font = 1,
-        h_align = .5,
-        v_align = .5,
+local screen = ui_utils.create_screen({
+        padding_x = 20,
+        padding_y = 20,
     })
 
--- Add textbox to the screen
-screen.children = {test_textbox}
+-- Draws a background panel
+local panel = ui_utils.create_panel({
+        panel_color = {r = 0, g = 0, b = 0, a = 128},
+        min_w = 600,
+        min_h = 600,
+        padding_x = 0,
+        padding_y = 0,
+        fill_mode = "no_fill",
+    })
 
--- Makes it go all over the screen
-local function update()
-	test_var_1 = test_var_1 + .025
-	test_var_2 = test_var_2 + .02
+-- Draws a textbox that takes up 1/9 of the space
+local textbox = ui_utils.create_textbox({
+        -- Text params
+        text = "I'm small!",
+        text_scale = 1,
+        h_align = 0.5,
+        v_align = 0.5,
 
-    -- Update the anchor of the textbox
-	test_textbox.arg_params.anchor_x = (math.sin(test_var_1) + 1) / 2
-	test_textbox.arg_params.anchor_y = (math.cos(test_var_2) + 1) / 2
-end
+        -- Positioning params
+        min_w = 10, -- Override the min_x and min_y that was inherited with something small
+        min_h = 10,
+
+        anchor_x = .5, -- Position in the center of my parent
+        anchor_y = .5,
+
+        fill_mode = "fill", -- Despite being set to "fill", only fill a space proportional to rel_w and rel_h
+        rel_h = 0.33,
+        rel_w = 0.33,
+
+        -- Rendering params
+        draw_border = true,
+        text_color = {r = 255, g = 255, b = 255, a = 255},
+        panel_color = {r = 0, g = 0, b = 0, a = 128},
+        border_color = {r = 255, g = 255, b = 255, a = 255},
+    })
+
+-- Add textbox to the panel
+panel.children = {textbox}
+
+-- Add panel to the screen
+screen.children = {panel}
 
 -- Render the screen and its children every frame
-local function on_hud_render()
-	screen:render()
+function on_hud_render()
+    screen:render()
 end
 
-hook_event(HOOK_UPDATE, update)
 hook_event(HOOK_ON_HUD_RENDER, on_hud_render)

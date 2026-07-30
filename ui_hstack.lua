@@ -46,7 +46,6 @@ function M.HStack:get_min_size(defaults, arg_params)
 	return total_w, max_h
 end
 
--- Heavily assisted with AI.
 function M.HStack:render(arg_params, parent_params)
 	local params = ui_helpers.merge_params(self.defaults, parent_params, arg_params)
 
@@ -66,7 +65,6 @@ function M.HStack:render(arg_params, parent_params)
 	local fillable_count = 0
 	local total_spacing = math.max(0, #children - 1) * (params.spacing_x or 0)
 
-	-- Measure children first so we can divide remaining width fairly.
 	for i, child in ipairs(children) do
 		local cw, _ = child:get_min_size(child.defaults, child.arg_params)
 		local cp = ui_helpers.merge_params(child.defaults, child.arg_params)
@@ -89,7 +87,6 @@ function M.HStack:render(arg_params, parent_params)
 
 		if (cp.fill_mode == "w_fill" or cp.fill_mode == "fill") and fillable_count > 0 then
 			if remaining_w > 0 then
-				-- Share leftover width evenly among fillable children.
 				local even_width = (available_w - total_fixed_w - total_spacing) / fillable_count
 				final_w = math.max(data.cw, even_width)
 			else
@@ -97,12 +94,13 @@ function M.HStack:render(arg_params, parent_params)
 			end
 		end
 
-		child:render(child.arg_params, {
+		-- Pass the merged 'params' so children inherit the style context
+		child:render(child.arg_params, ui_helpers.merge_params(params, {
 			max_w = final_w,
 			max_h = available_h,
 			x = current_x,
 			y = params.y + params.padding_y,
-		})
+		}))
 
 		current_x = current_x + final_w + (params.spacing_x or 0)
 	end

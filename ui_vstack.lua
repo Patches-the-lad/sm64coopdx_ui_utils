@@ -46,7 +46,6 @@ function M.VStack:get_min_size(defaults, arg_params)
 	return max_w, total_h
 end
 
--- Heavily assisted with AI.
 function M.VStack:render(arg_params, parent_params)
 	local params = ui_helpers.merge_params(self.defaults, parent_params, arg_params)
 
@@ -94,12 +93,13 @@ function M.VStack:render(arg_params, parent_params)
 			end
 		end
 
-		child:render(child.arg_params, {
+		-- Pass the merged 'params' so children inherit the style context
+		child:render(child.arg_params, ui_helpers.merge_params(params, {
 			max_w = available_w,
 			max_h = final_h,
 			x = params.x + params.padding_x,
 			y = current_y,
-		})
+		}))
 
 		current_y = current_y + final_h + (params.spacing_y or 0)
 	end

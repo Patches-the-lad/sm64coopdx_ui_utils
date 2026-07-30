@@ -88,7 +88,6 @@ function M.Grid:render(arg_params, parent_params)
 	for _, h in ipairs(row_heights) do min_total_h = min_total_h + h end
 
 	-- Calculate extra space to distribute if the grid is filling
-	-- We subtract spacing from available space before distributing
 	local spacing_w = (math.max(0, params.cols - 1) * (params.spacing_x or 0))
 	local spacing_h = (math.max(0, params.rows - 1) * (params.spacing_y or 0))
 
@@ -127,12 +126,13 @@ function M.Grid:render(arg_params, parent_params)
 			cell_y = cell_y + final_row_heights[r] + (params.spacing_y or 0)
 		end
 
-		child:render(child.arg_params, {
+		-- Pass the merged 'params' so children inherit the style context
+		child:render(child.arg_params, ui_helpers.merge_params(params, {
 			max_w = final_col_widths[col],
 			max_h = final_row_heights[row],
 			x = cell_x,
 			y = cell_y,
-		})
+		}))
 	end
 end
 

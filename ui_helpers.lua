@@ -21,36 +21,61 @@ end
 
 -- Resolve actual size and position based on:
 -- - min/max bounds
+-- - relative sizing
 -- - fill mode
 -- - anchor offsets
 -- - manual x/y offsets
 function M.resolve_position(params)
-	local actual_w = params.min_w or 0
-	local actual_h = params.min_h or 0
+	-- Identify the Available Space (from parent)
+	local parent_w = params.max_w or 0
+	local parent_h = params.max_h or 0
 
-	-- Fill modes decide how much space this element consumes
-	if params.fill_mode == "fill" then
-		actual_w = params.max_w
-		actual_h = params.max_h
-	elseif params.fill_mode == "w_fill" then
-		actual_w = params.max_w
-	elseif params.fill_mode == "h_fill" then
-		actual_h = params.max_h
+	-- Calculate the "Ceiling"
+	local ceiling_w = parent_w
+	if params.rel_w then
+		ceiling_w = parent_w * params.rel_w
 	end
 
+	local ceiling_h = parent_h
+	if params.rel_h then
+		ceiling_h = parent_h * params.rel_h
+	end
+
+	-- Determine the Desired Size based on Fill Mode
+	local desired_w = params.min_w or 0
+	local desired_h = params.min_h or 0
+
+	if params.fill_mode == "fill" then
+		desired_w = ceiling_w
+		desired_h = ceiling_h
+	elseif params.fill_mode == "w_fill" then
+		desired_w = ceiling_w
+	elseif params.fill_mode == "h_fill" then
+		desired_h = ceiling_h
+	end
+
+	-- Final Clamp: Result must be between min and the relative ceiling
+	local actual_w = math.max(params.min_w or 0, math.min(desired_w, ceiling_w))
+	local actual_h = math.max(params.min_h or 0, math.min(desired_h, ceiling_h))
+
+	-- Calculate Position based on Parent's space (not the object's size)
 	local anchor_x = params.anchor_x or 0
 	local anchor_y = params.anchor_y or 0
 	local offset_x = params.x_offset or 0
 	local offset_y = params.y_offset or 0
 
-	-- Anchor places the object relative to the leftover space.
-	params.x = params.x + (anchor_x * (params.max_w - actual_w)) + offset_x
-	params.y = params.y + (anchor_y * (params.max_h - actual_h)) + offset_y
+	-- Anchor calculation: (Parent Space - Object Size) * anchor_factor
+	-- This centers the object if anchor is 0.5, or puts it at the end if 1.0
+	params.x = params.x + (anchor_x * (parent_w - actual_w)) + offset_x
+	params.y = params.y + (anchor_y * (parent_h - actual_h)) + offset_y
 
-	-- Update bounds to the final resolved size.
+	-- Update params for the render functions and children
+	-- Now max_w actually means "the width of this object"
 	params.max_w = actual_w
 	params.max_h = actual_h
 end
+
+
 
 -- Shared min-size logic for containers that size themselves from children.
 function M.base_get_min_size(self, defaults, arg_params)

@@ -19,6 +19,7 @@ M.Container.__index = M.Container
 M.Container.defaults = {
 	x = 0, y = 0,
 	min_w = 1, min_h = 1,
+	rel_w = nil, rel_h = nil,
 	padding_x = 10, padding_y = 10,
 	anchor_x = 0, anchor_y = 0,
 	fill_mode = "fill",

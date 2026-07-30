@@ -17,6 +17,7 @@ M.Screen.__index = M.Screen
 M.Screen.defaults = {
 	x = 0, y = 0,
 	min_w = 1, min_h = 1,
+	rel_w = nil, rel_h = nil,
 	max_w = djui_hud_get_screen_width(),
 	max_h = djui_hud_get_screen_height(),
 	padding_x = 0, padding_y = 0,

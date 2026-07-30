@@ -19,6 +19,7 @@ M.HStack.__index = M.HStack
 M.HStack.defaults = {
 	x_offset = 0, y_offset = 0,
 	min_w = 1, min_h = 1,
+	rel_w = nil, rel_h = nil,
 	padding_x = 10, padding_y = 10,
 	spacing_x = 5,
 	anchor_x = 0, anchor_y = 0,

@@ -51,5 +51,7 @@ M.HStack = ui_hstack.HStack
 M.VStack = ui_vstack.VStack
 M.Grid = ui_grid.Grid
 
+M.init()
+
 return M
 

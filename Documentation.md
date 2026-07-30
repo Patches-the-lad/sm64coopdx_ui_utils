@@ -430,6 +430,8 @@ local panel = ui_utils.create_panel({
 -- A vertical stack object
 local v_stack = ui_utils.create_v_stack({
 		fill_mode = "fill",
+		min_w = 1,
+		min_h = 1,
 	})
 
 -- Draws a red textbox that takes up 1/3 of the vertical stack
@@ -491,7 +493,7 @@ hook_event(HOOK_ON_HUD_RENDER, on_hud_render)
 
 ## Styling:
 
-```
+```lua
 -- This sytem allows for styling by pre defining a list of parameters!
 -- By pre-defining parameters in a table, you can style an entire set of UI objects all at once!
 -- Even if any particular object does not use all of the parameters, they are still passed down to its children.

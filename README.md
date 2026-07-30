@@ -59,7 +59,7 @@ function M.init()
     })
 
     -- Create a text box to put inside that panel
-    local welcome_text = ui_utils.create_text_box({
+    local welcome_text = ui_utils.create_textbox({
         panel_color = {r = 128, g = 128, b = 128, a = 160},
         text = "Welcome to my Mod!",
         text_scale = 1,

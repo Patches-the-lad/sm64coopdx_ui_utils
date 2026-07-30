@@ -366,7 +366,7 @@ local panel = ui_utils.create_panel({
     })
 
 -- Draws a textbox that takes up 1/9 of the space
-local red_textbox = ui_utils.create_textbox({
+local textbox = ui_utils.create_textbox({
         -- Text params
         text = "I'm small!",
         text_scale = 1,
@@ -392,7 +392,7 @@ local red_textbox = ui_utils.create_textbox({
     })
 
 -- Add textbox to the panel
-panel.children = {red_textbox}
+panel.children = {textbox}
 
 -- Add panel to the screen
 screen.children = {panel}

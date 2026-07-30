@@ -229,6 +229,7 @@ As well as these object scripts:
 - ui_container.lua
 - ui_panel.lua
 - ui_textbox.lua
+- ui_texture.lua
 - ui_hstack.lua
 - ui_vstack.lua
 - ui_grid.lua

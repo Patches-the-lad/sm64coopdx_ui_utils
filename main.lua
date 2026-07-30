@@ -14,7 +14,7 @@ local screen = ui_utils.create_screen({
 local star_texture = ui_utils.create_texture({
     tex_info = star_tex_info,
     base_size = 128, -- Set this to the width/height of your texture
-    min_w = 500, min_h = 500,
+    min_w = 256, min_h = 256,
     fill_mode = "no_fill",
 })
 

@@ -165,6 +165,45 @@ Creates a Textbox UI object. This object is similar to the panel, except that it
 
 
 
+## create_texture
+
+------
+
+### Description
+
+Creates a texture UI object. This object is very similar to the panel, except that it renders a texture. to add a texture to your project, add a png file to the "textures" folder. Textures added to your project must have an aspect ratio of 1:1, have a width/height of n^2 (2, 4, 8, 16, 32, etc...).
+
+### Lua Example
+
+`local texture = ui_utils.create_texture({arg_params})`
+
+### Parameters
+
+| Name             | Type     | Description                                                  | Default value                        |
+| ---------------- | -------- | ------------------------------------------------------------ | ------------------------------------ |
+| x_offset         | int      | X position offset from the left in pixels                    | 0                                    |
+| y_offset         | int      | Y position offset from the top in pixels                     | 0                                    |
+| min_w            | int      | Minimum width                                                | 1                                    |
+| min_h            | int      | Minimum height                                               | 1                                    |
+| rel_w            | num      | Relative width                                               | nil                                  |
+| rel_h            | num      | Relative height                                              | nil                                  |
+| padding_x        | int      | Horizontal padding for children                              | 0                                  |
+| padding_y        | int      | Vertical padding for children                                | 0                                  |
+| anchor_x         | num      | Anchors objects within their bounds horizontally<br />Range: 0 - 1<br />0  = Left<br />1 = Right<br />.5 = Middle | 0                                    |
+| anchor_y         | num      | Anchors objects within their bounds vertically<br />Range: 0 - 1<br />0  = Top<br />1 = Bottom<br />.5 = Middle | 0                                    |
+| fill_mode        | string   | "fill" = fill x & y, "<br />w_fill" = fill x only, <br />"h_fill" = fill y only, <br />"no_fill" = use minimum width and height | "fill"|
+| tex_info         | tex_info | Texture info (use `get_texture_info("name_of_your_png")`)    | nil                                  |
+| base_size        | int      | The width/height of your png in pixels                       | 256                                  |
+| draw_border      | bool     | Enables or disables rendering a border around the panel      | false                                |
+| border_color     | table    | Table describing red, green, blue, and alpha numbers in the range of 0-255<br />{r, g, b, a}<br />Examples:<br />Solid white: {r = 255, g = 255, b = 255, a = 255}<br />Solid black: {r = 0, g = 0, b = 0, a = 255}<br />Transparent black: {r = 0, g = 0, b = 0, a = 160}<br />Solid red: {r = 255, g = 0, b = 0, a = 255} | {r = 255, g = 255, b = 255, a = 255} |
+| border_thickness | int      | thickness of the border in pixels                            | 3                                    |
+
+### Returns
+
+- Table containing texture object
+
+
+
 ## create_h_stack
 
 ------
@@ -343,6 +382,40 @@ end
 hook_event(HOOK_ON_HUD_RENDER, on_hud_render)
 ```
 
+## Texture:
+
+```lua
+-- Add the tool
+local ui_utils = require("ui_utils")
+
+-- Add the texture info
+local star_tex_info = get_texture_info("star") -- Put your textures in the "textures" folder. Textures must be a square of any size n^2
+
+-- The base UI object that acts as the entire screen
+local screen = ui_utils.create_screen({
+    padding_x = 10,
+    padding_y = 10
+})
+
+-- Draws a star texture
+local star_texture = ui_utils.create_texture({
+    tex_info = star_tex_info,
+    base_size = 128, -- Set this to the width/height of your texture
+    min_w = 500, min_h = 500,
+    fill_mode = "no_fill",
+})
+
+-- Add texture to the screen
+screen.children = {star_texture}
+
+-- Render the screen and its children every frame
+local function on_hud_render()
+	screen:render()
+end
+
+hook_event(HOOK_ON_HUD_RENDER, on_hud_render)
+```
+
 ## Proportional sizing:
 
 ```lua
@@ -479,7 +552,7 @@ panel.children = {v_stack}
 -- Add textboxes to the vertical stack
 v_stack.children = {red_textbox, green_textbox, blue_textbox}
 
--- Add textbox to the screen
+-- Add panel to the screen
 screen.children = {panel}
 
 -- Render the screen and its children every frame

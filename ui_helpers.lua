@@ -76,7 +76,6 @@ function M.resolve_position(params)
 end
 
 
-
 -- Shared min-size logic for containers that size themselves from children.
 function M.base_get_min_size(self, defaults, arg_params)
 	local params = M.merge_params(defaults, arg_params)

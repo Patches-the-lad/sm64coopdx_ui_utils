@@ -26,6 +26,7 @@ UI Utils is designed as a system, not a finished product. It provides the primit
 | `Screen`  | The root container that encompasses the entire display.      |
 | `Panel`   | A basic rectangular area with customizable colors and borders. |
 | `TextBox` | A panel specifically optimized for rendering formatted text. |
+| `Texture` | An object that displays a texture.                           |
 | `HStack`  | A layout container that aligns children horizontally.        |
 | `VStack`  | A layout container that aligns children vertically.          |
 | `Grid`    | A layout container that organizes children into rows and columns. |
@@ -260,4 +261,4 @@ hook_event(HOOK_ON_HUD_RENDER, on_hud_render)
 
 This is an open-source project. Pull requests and issue reports are welcome!
 
-If you feel that a feature is missing (such as buttons, sliders, drop down menus, progress bars, images, etc), feel free to fork the project and write in the object yourself!
+If you feel that a feature is missing (such as buttons, sliders, drop down menus, progress bars, etc), feel free to fork the project and write in the object yourself!

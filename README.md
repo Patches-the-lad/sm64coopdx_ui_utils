@@ -103,7 +103,7 @@ The system utilizes a semi-OOP approach via Lua metatables. Each UI object maint
 2. It computes the absolute position based on the parent's dimensions and the element's anchoring/padding.
 3. It renders the element and recursively tells all children to do the same.
 
-## 🎨Styling
+## 🎨 Styling
 
 Stop repeating yourself! UI Utils features a powerful styling system that allows you to define a "theme" as a Lua table and apply it to any component. This eliminates the need to manually define colors, fonts, and padding for every single element in your UI.
 

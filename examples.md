@@ -27,7 +27,7 @@ local panel = ui_utils.create_panel({
 screen.children = {panel}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
 	screen:render()
 end
 
@@ -67,7 +67,7 @@ local textbox = ui_utils.create_textbox({
 screen.children = {textbox}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
     screen:render()
 end
 
@@ -171,7 +171,7 @@ panel.children = {textbox}
 screen.children = {panel}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
     screen:render()
 end
 
@@ -260,7 +260,7 @@ v_stack.children = {red_textbox, green_textbox, blue_textbox}
 screen.children = {panel}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
     screen:render()
 end
 
@@ -365,7 +365,7 @@ style_b_panel.children = {style_b_vstack}
 screen.children = {style_a_panel, style_b_panel}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
     screen:render()
 end
 

@@ -206,7 +206,7 @@ style_b_panel.children = {style_b_vstack}
 screen.children = {style_a_panel, style_b_panel}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
     screen:render()
 end
 
@@ -247,7 +247,7 @@ local screen = ui_utils.create_screen()
 -- screen.children = {ui_object}
 
 -- Render the screen and its children every frame
-function on_hud_render()
+local function on_hud_render()
 	screen:render()
 end
 

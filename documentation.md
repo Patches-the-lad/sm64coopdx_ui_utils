@@ -22,6 +22,7 @@ Creates a screen UI object. This object acts as the root of the UI tree.
 
 | Name      | Type   | Description                                  | Default value                |
 | --------- | ------ | -------------------------------------------- | ---------------------------- |
+| render    | bool   | Enables/disables rendering object            | true                         |
 | x         | int    | X position from the left in pixels           | 0                            |
 | y         | int    | Y position from the top in pixels            | 0                            |
 | min_w     | int    | Minimum width                                | 1                            |
@@ -56,6 +57,7 @@ Creates a container UI object. This object acts as the most basic form of contai
 
 | Name      | Type   | Description                                                  | Default value |
 | --------- | ------ | ------------------------------------------------------------ | ------------- |
+| render    | bool   | Enables/disables rendering object                            | true          |
 | x_offset  | int    | X position offset from the left in pixels                    | 0             |
 | y_offset  | int    | Y position offset from the top in pixels                     | 0             |
 | min_w     | int    | Minimum width                                                | 1             |
@@ -90,6 +92,7 @@ Creates a Panel UI object. This object is very similar to the container, except 
 
 | Name             | Type   | Description                                                  | Default value                        |
 | ---------------- | ------ | ------------------------------------------------------------ | ------------------------------------ |
+| render           | bool   | Enables/disables rendering object                            | true                                 |
 | x_offset         | int    | X position offset from the left in pixels                    | 0                                    |
 | y_offset         | int    | Y position offset from the top in pixels                     | 0                                    |
 | min_w            | int    | Minimum width                                                | 1                                    |
@@ -128,6 +131,7 @@ Creates a Textbox UI object. This object is similar to the panel, except that it
 
 | Name             | Type   | Description                                                  | Default value                        |
 | ---------------- | ------ | ------------------------------------------------------------ | ------------------------------------ |
+| render           | bool   | Enables/disables rendering object                            | true                                 |
 | x_offset         | int    | X position offset from the left in pixels                    | 0                                    |
 | y_offset         | int    | Y position offset from the top in pixels                     | 0                                    |
 | min_w            | int    | Minimum width                                                | 1                                    |
@@ -181,6 +185,7 @@ Creates a texture UI object. This object is very similar to the panel, except th
 
 | Name             | Type     | Description                                                  | Default value                        |
 | ---------------- | -------- | ------------------------------------------------------------ | ------------------------------------ |
+| render | bool | Enables/disables rendering object | true |
 | x_offset         | int      | X position offset from the left in pixels                    | 0                                    |
 | y_offset         | int      | Y position offset from the top in pixels                     | 0                                    |
 | min_w            | int      | Minimum width                                                | 1                                    |
@@ -220,6 +225,7 @@ Creates a horizontal stack UI object. This object acts as an advanced form of th
 
 | Name      | Type   | Description                                                  | Default value |
 | --------- | ------ | ------------------------------------------------------------ | ------------- |
+| render    | bool   | Enables/disables rendering object                            | true          |
 | x_offset  | int    | X position offset from the left in pixels                    | 0             |
 | y_offset  | int    | Y position offset from the top in pixels                     | 0             |
 | min_w     | int    | Minimum width                                                | 1             |
@@ -255,6 +261,7 @@ Creates a vertical stack UI object. This object acts as an advanced form of the 
 
 | Name      | Type   | Description                                                  | Default value |
 | --------- | ------ | ------------------------------------------------------------ | ------------- |
+| render    | bool   | Enables/disables rendering object                            | true          |
 | x_offset  | int    | X position offset from the left in pixels                    | 0             |
 | y_offset  | int    | Y position offset from the top in pixels                     | 0             |
 | min_w     | int    | Minimum width                                                | 1             |
@@ -290,6 +297,7 @@ Creates a grid UI object. This object acts as an advanced form of the basic cont
 
 | Name      | Type   | Description                                                  | Default value |
 | --------- | ------ | ------------------------------------------------------------ | ------------- |
+| render    | bool   | Enables/disables rendering object                            | true          |
 | x_offset  | int    | X position offset from the left in pixels                    | 0             |
 | y_offset  | int    | Y position offset from the top in pixels                     | 0             |
 | min_w     | int    | Minimum width                                                | 1             |

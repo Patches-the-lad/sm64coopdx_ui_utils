@@ -15,6 +15,7 @@ end
 M.Panel = {}
 M.Panel.__index = M.Panel
 M.Panel.defaults = {
+	render = true,
 	x_offset = 0, y_offset = 0,
 	min_w = 1, min_h = 1,
 	rel_w = nil, rel_h = nil,
@@ -41,14 +42,16 @@ function M.Panel:render(arg_params, parent_params)
 
 	ui_helpers.resolve_position(params)
 
-	-- Draw panel background.
-	djui_hud_set_color(params.panel_color.r, params.panel_color.g, params.panel_color.b, params.panel_color.a)
-	djui_hud_render_rect(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h)
+	if params.render == true then
+		-- Draw panel background.
+		djui_hud_set_color(params.panel_color.r, params.panel_color.g, params.panel_color.b, params.panel_color.a)
+		djui_hud_render_rect(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h)
 
-	if params.draw_border then
-		-- Draw panel border.
-		djui_hud_set_color(params.border_color.r, params.border_color.g, params.border_color.b, params.border_color.a)
-		ui_helpers.render_border_lines(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h, params.border_thickness)
+		if params.draw_border then
+			-- Draw panel border.
+			djui_hud_set_color(params.border_color.r, params.border_color.g, params.border_color.b, params.border_color.a)
+			ui_helpers.render_border_lines(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h, params.border_thickness)
+		end
 	end
 
 	-- Child area inside the panel.

@@ -17,6 +17,7 @@ end
 M.VStack = {}
 M.VStack.__index = M.VStack
 M.VStack.defaults = {
+	render = true,
 	x_offset = 0, y_offset = 0,
 	min_w = 1, min_h = 1,
 	rel_w = nil, rel_h = nil,

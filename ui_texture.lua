@@ -15,6 +15,7 @@ end
 M.Texture = {}
 M.Texture.__index = M.Texture
 M.Texture.defaults = {
+	render = true,
 	x_offset = 0, y_offset = 0,
 	min_w = 1, min_h = 1,
 	rel_w = nil, rel_h = nil,
@@ -46,21 +47,23 @@ function M.Texture:render(arg_params, parent_params)
 	local scaleW = params.max_w / params.base_size
 	local scaleH = params.max_h / params.base_size
 
-	-- Draw the texture
-	if params.tex_info then
-		djui_hud_render_texture(
-			params.tex_info,
-			params.x + params.x_offset,
-			params.y + params.y_offset,
-			scaleW,
-			scaleH
-		)
-	end
+	if params.render == true then
+		-- Draw the texture
+		if params.tex_info then
+			djui_hud_render_texture(
+				params.tex_info,
+				params.x + params.x_offset,
+				params.y + params.y_offset,
+				scaleW,
+				scaleH
+			)
+		end
 
-	if params.draw_border then
-		-- Draw texture border
-		djui_hud_set_color(params.border_color.r, params.border_color.g, params.border_color.b, params.border_color.a)
-		ui_helpers.render_border_lines(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h, params.border_thickness)
+		if params.draw_border then
+			-- Draw texture border
+			djui_hud_set_color(params.border_color.r, params.border_color.g, params.border_color.b, params.border_color.a)
+			ui_helpers.render_border_lines(params.x + params.x_offset, params.y + params.y_offset, params.max_w, params.max_h, params.border_thickness)
+		end
 	end
 
 	-- Child area inside the texture
